@@ -94,6 +94,16 @@ rca-agent/
 └── docs/
     ├── architecture.md
     └── quickstart.md
+
+📁 Estrutura de Diretórios Críticos
+agent/pipeline.py: O core matemático do sistema. Faz o BFS no grafo de microsserviços, roda a correlação temporal e executa o RAG sem encostar na LLM.
+
+agent/llm_chain.py: Pipeline de refinamento em 3 estágios usando LLaMA 3.1 via Groq.
+
+mcps/: Servidores FastAPI que expõem as ferramentas padronizadas do Model Context Protocol para expor logs (Loki), métricas (Prometheus) e traces (Tempo).
+
+
+
 🛠️ Stack
 Infra: Kind + OpenTelemetry Demo App (24 microserviços)
 Observabilidade: Prometheus · Loki · Tempo · Qdrant
@@ -101,5 +111,31 @@ MCPs: 4 servidores FastAPI (métricas, logs, traces, memória)
 LLMs: Groq — LLaMA 3.1 8B Instant (free tier)
 Inspiração: Beyond Dashboards — KubeCon/CNCF
 🚀 Quickstart
+
+[Alerta Disparado] 
+       │
+       ▼
+[Busca em Largura (BFS)] ───> Delimita o Escopo de Impacto no Grafo de Microserviços
+       │
+       ▼
+[MCPs em Paralelo] ─────────> Coleta concorrente de Evidências (Métricas, Logs, Traces)
+       │
+       ▼
+[Correlação Temporal] ──────> Filtra anomalias matemáticas puras (Python Puro)
+       │
+       ▼
+[RAG Semântico] ────────────> Busca falhas similares no Qdrant
+       │
+       ▼
+[LLM Chain (3 Nós Groq)] ───> LLM1 (Análise) ──> LLM2 (Crítica) ──> LLM3 (Relatório)
+
+
+📊 Matriz de Resultados Observados
+Caso de TesteInjeção Aplicada Tempo de RespostaResolução do Agente (H1)
+Caso 1: Isolamento de RedeCriação de NetworkPolicy bloqueando checkout ──> payment.0.4s⚠️ Identifica falha de conexão com o payment service.
+Caso 2: Indisponibilidadekubectl scale down zerando réplicas do cart service.0.42s🛑 Detecta timeout imediato causado pela ausência do container de carrinho.
+Caso 3: Cascata por OOMPatch simulando OOMKilled no recommendation, estourando CPU do catalog.4.4s📉 Mapeia a perda de cache cascateando em latência no frontend.
+
+
 
 
