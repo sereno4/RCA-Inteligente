@@ -1,9 +1,42 @@
 
-## Lema do projeto
+# 🚀 Quickstart: RCA Agent
 
-> "A parte mais inteligente do agente não é a IA"
+> **Lema do Projeto:** *"A parte mais inteligente do agente não é a IA."*
+> A IA não adivinha: ela apenas narra, contextualiza e traduz o que a engenharia de dados e a matemática do pipeline já provaram deterministicamente.
 
-A IA só narra o que a engenharia já provou matematicamente.
+Este guia orienta a inicialização do ambiente local, a subida da infraestrutura distribuída e a execução dos testes de injeção de falhas para validar o agente de Root Cause Analysis (RCA).
+
+---
+
+## 🛠️ Stack Tecnológica & Requisitos
+
+### Pré-requisitos Obrigatórios
+* **Container Runtime:** Docker Desktop ou Docker Engine
+* **Kubernetes Local:** [Kind](https://kind.sigs.k8s.io/) (`brew install kind` ou equivalente)
+* **Gerenciadores:** `kubectl` + [Helm 3](https://helm.sh/)
+* **Runtime:** Python 3.11+
+* **Inferência:** Conta na [Groq Cloud](https://console.groq.com/) (Chave de API do Free Tier)
+
+### Componentes do Ecossistema
+* **Infraestrutura:** Cluster Kind (Single-node) + OpenTelemetry Demo App (24 microserviços simulando um e-commerce).
+* **Observabilidade:** Prometheus (Métricas) · Loki (Logs) · Tempo (Traces).
+* **Camada de Fatos (MCPs):** 4 servidores FastAPI independentes atuando como Model Context Protocol para isolar o acesso à telemetria e ao vetor de memória.
+* **Storage Vetorial:** Qdrant (Armazenamento de incidentes históricos para RAG).
+* **LLM Engine:** Groq (LLaMA 3.1 8B Instant).
+
+---
+
+## 🏗️ 1. Inicialização da Infraestrutura
+
+Execute os comandos a partir da raiz do repositório `rca-agent/`:
+
+```bash
+# 1. Criar o cluster Kubernetes local via Kind
+kind create cluster --config infra/kind/cluster.yaml
+
+# 2. Instalar a stack de observabilidade e a aplicação alvo (OTel Demo)
+# (Este script configura Helm Charts para Prometheus, Loki, Tempo e o Demo App)
+bash infra/scripts/install.sh
 
 ## Stack
 
