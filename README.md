@@ -1,3 +1,10 @@
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Kubernetes](https://img.shields.io/badge/Kubernetes-Kind-326CE5?logo=kubernetes&logoColor=white)](https://kind.sigs.k8s.io/)
+[![LLM](https://img.shields.io/badge/LLM-Groq%20LLaMA%203.1-000000?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMTIgMmEyIDIgMCAwIDAtMiAydjE2YTIgMiAwIDAgMCAyIDJoNGEyIDIgMCAwIDAgMi0yVjRhMiAyIDAgMCAwLTItMmgtNHoiLz48L3N2Zz4=)](https://console.groq.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Tests](https://img.shields.io/badge/Tests-3/3%20cases%20passing-brightgreen)](tests/fault-injection/)
+[![Response Time](https://img.shields.io/badge/Response%20Time-<5s-blue)](#-resultados-nos-3-casos-de-teste)
 
 # 🚀 Quickstart: RCA Agent
 
