@@ -1,0 +1,12 @@
+tempo:
+  storage:
+    trace:
+      backend: local
+      local:
+        path: /var/tempo/traces
+  service:
+    type: NodePort
+    nodePort: 30200
+
+tempoQuery:
+  enabled: false

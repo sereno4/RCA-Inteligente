@@ -1,0 +1,41 @@
+grafana:
+  enabled: true
+  service:
+    type: NodePort
+    nodePort: 30300
+  adminPassword: "admin"
+  additionalDataSources:
+    - name: Loki
+      type: loki
+      url: http://loki-gateway.rca-monitoring.svc.cluster.local
+      access: proxy
+    - name: Tempo
+      type: tempo
+      url: http://tempo.rca-monitoring.svc.cluster.local:3100
+      access: proxy
+
+prometheus:
+  service:
+    type: NodePort
+    nodePort: 30090
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+
+alertmanager:
+  alertmanagerSpec:
+    externalUrl: "http://localhost:30090"
+  config:
+    global:
+      resolve_timeout: 1m
+    route:
+      group_by: ['alertname', 'service']
+      group_wait: 10s
+      group_interval: 10s
+      repeat_interval: 1h
+      receiver: 'rca-agent-webhook'
+    receivers:
+      - name: 'rca-agent-webhook'
+        webhook_configs:
+          - url: 'http://rca-agent.rca-system.svc.cluster.local:8000/webhook'
+            send_resolved: true

@@ -1,0 +1,203 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp-prometheus
+  namespace: rca-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mcp-prometheus
+  template:
+    metadata:
+      labels:
+        app: mcp-prometheus
+    spec:
+      containers:
+        - name: mcp
+          image: mcp-prometheus:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcp-prometheus
+  namespace: rca-system
+spec:
+  selector:
+    app: mcp-prometheus
+  ports:
+    - port: 8000
+      targetPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp-loki
+  namespace: rca-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mcp-loki
+  template:
+    metadata:
+      labels:
+        app: mcp-loki
+    spec:
+      containers:
+        - name: mcp
+          image: mcp-loki:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcp-loki
+  namespace: rca-system
+spec:
+  selector:
+    app: mcp-loki
+  ports:
+    - port: 8000
+      targetPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp-tempo
+  namespace: rca-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mcp-tempo
+  template:
+    metadata:
+      labels:
+        app: mcp-tempo
+    spec:
+      containers:
+        - name: mcp
+          image: mcp-tempo:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcp-tempo
+  namespace: rca-system
+spec:
+  selector:
+    app: mcp-tempo
+  ports:
+    - port: 8000
+      targetPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp-qdrant
+  namespace: rca-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mcp-qdrant
+  template:
+    metadata:
+      labels:
+        app: mcp-qdrant
+    spec:
+      containers:
+        - name: mcp
+          image: mcp-qdrant:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcp-qdrant
+  namespace: rca-system
+spec:
+  selector:
+    app: mcp-qdrant
+  ports:
+    - port: 8000
+      targetPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp-server
+  namespace: rca-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mcp-server
+  template:
+    metadata:
+      labels:
+        app: mcp-server
+    spec:
+      containers:
+        - name: mcp
+          image: mcp-server:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcp-server
+  namespace: rca-system
+spec:
+  selector:
+    app: mcp-server
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rca-pipeline
+  namespace: rca-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rca-pipeline
+  template:
+    metadata:
+      labels:
+        app: rca-pipeline
+    spec:
+      containers:
+        - name: pipeline
+          image: rca-pipeline:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rca-pipeline
+  namespace: rca-system
+spec:
+  selector:
+    app: rca-pipeline
+  ports:
+    - port: 8000
+      targetPort: 8000

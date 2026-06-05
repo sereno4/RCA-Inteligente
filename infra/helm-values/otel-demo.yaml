@@ -1,0 +1,46 @@
+components:
+  frontend:
+    enabled: true
+  frontend-proxy:
+    enabled: true
+    service:
+      type: NodePort
+      port: 8080
+      nodePort: 30080
+  checkout:
+    enabled: true
+  cart:
+    enabled: true
+  payment:
+    enabled: true
+  product-catalog:
+    enabled: true
+  shipping:
+    enabled: true
+  currency:
+    enabled: true
+  recommendation:
+    enabled: true
+  ad:
+    enabled: true
+  email:
+    enabled: true
+  accounting:
+    enabled: true
+  fraud-detection:
+    enabled: true
+  image-provider:
+    enabled: true
+  load-generator:
+    enabled: true
+
+grafana:
+  enabled: false
+jaeger:
+  enabled: false
+prometheus:
+  enabled: false
+opensearch:
+  enabled: false
+opentelemetry-collector:
+  enabled: true
