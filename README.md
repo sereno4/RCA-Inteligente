@@ -6,7 +6,7 @@
 [![Tests](https://img.shields.io/badge/Tests-3/3%20cases%20passing-brightgreen)](tests/fault-injection/)
 [![Response Time](https://img.shields.io/badge/Response%20Time-<5s-blue)](#-resultados-nos-3-casos-de-teste)
 
-# 🚀 Quickstart: RCA Agent
+RCA Inteligente com IA, Grafos e MCP | Multi-Agent Root Cause Analysis
 
 > **Lema do Projeto:** *"A parte mais inteligente do agente não é a IA."*
 > A IA não adivinha: ela apenas narra, contextualiza e traduz o que a engenharia de dados e a matemática do pipeline já provaram deterministicamente.
