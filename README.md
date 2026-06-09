@@ -149,6 +149,8 @@ Infra: Kind + OpenTelemetry Demo App (24 microserviços)
 Observabilidade: Prometheus · Loki · Tempo · Qdrant
 MCPs: 4 servidores FastAPI (métricas, logs, traces, memória)
 LLMs: Groq — LLaMA 3.1 8B Instant (free tier)
+
+
 ```mermaid
 graph TB
 
