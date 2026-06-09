@@ -150,9 +150,7 @@ Observabilidade: Prometheus · Loki · Tempo · Qdrant
 MCPs: 4 servidores FastAPI (métricas, logs, traces, memória)
 LLMs: Groq — LLaMA 3.1 8B Instant (free tier)
 
-## 🏗️ RCA Agent Architecture
-
-```mermaid
+%%{init: {'theme': 'default'}}%%
 flowchart TB
 
     Alert["Alert"]
@@ -193,7 +191,7 @@ flowchart TB
     RAG --> A
     A --> B
     B --> C
-```
+
 📊 Matriz de Resultados Observados
 Caso de TesteInjeção Aplicada Tempo de RespostaResolução do Agente (H1)
 Caso 1: Isolamento de RedeCriação de NetworkPolicy bloqueando checkout ──> payment.0.4s⚠️ Identifica falha de conexão com o payment service.
