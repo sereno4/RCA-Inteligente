@@ -152,48 +152,22 @@ LLMs: Groq — LLaMA 3.1 8B Instant (free tier)
 
 ## 🏗️ RCA Agent Architecture
 
-```mermaid
-flowchart TB
+flowchart TD
+    A[Alerta Disparado] --> B[Busca em Largura - BFS]
+    B -->|Delimita Escopo de Impacto| C[MCPs em Paralelo]
+    C -->|Coleta Evidências| D[Correlação Temporal]
+    D -->|Filtra Anomalias| E[RAG Semântico]
+    E -->|Busca Falhas Similares| F[LLM Chain - 3 Nós Groq]
 
-    Alert["Alert"]
+    F --> G[LLM1: Análise] --> H[LLM2: Crítica] --> I[LLM3: Relatório]
 
-    subgraph Discovery["Topology Discovery"]
-        BFS["BFS Graph Traversal"]
-    end
+    classDef start fill:#fee2e2,stroke:#ef4444,stroke-width:2px
+    classDef process fill:#e0f2fe,stroke:#0ea5e9,stroke-width:2px
+    classDef end fill:#dcfce7,stroke:#22c55e,stroke-width:2px
 
-    subgraph Evidence["Evidence Collection"]
-        Metrics["Metrics MCP"]
-        Logs["Logs MCP"]
-        Traces["Traces MCP"]
-    end
-
-    subgraph Analytics["Analytics Layer"]
-        Corr["Temporal Correlation"]
-        RAG["Qdrant Semantic Search"]
-    end
-
-    subgraph Reasoning["LLM Chain"]
-        A["Analysis"]
-        B["Critique"]
-        C["Final Report"]
-    end
-
-    Alert --> BFS
-
-    BFS --> Metrics
-    BFS --> Logs
-    BFS --> Traces
-
-    Metrics --> Corr
-    Logs --> Corr
-    Traces --> Corr
-
-    Corr --> RAG
-
-    RAG --> A
-    A --> B
-    B --> C
-```
+    class A start
+    class B,C,D,E,F process
+    class G,H,I end
 
 📊 Matriz de Resultados Observados
 Caso de TesteInjeção Aplicada Tempo de RespostaResolução do Agente (H1)
