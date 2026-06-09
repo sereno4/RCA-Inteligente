@@ -149,25 +149,24 @@ Infra: Kind + OpenTelemetry Demo App (24 microserviços)
 Observabilidade: Prometheus · Loki · Tempo · Qdrant
 MCPs: 4 servidores FastAPI (métricas, logs, traces, memória)
 LLMs: Groq — LLaMA 3.1 8B Instant (free tier)
-Inspiração: Beyond Dashboards — KubeCon/CNCF
 
 
-## Architecture
+ ## Architecture
+
 
 ```mermaid
 flowchart LR
-    A["Simulated Events"] --> B["WASM Runtime<br/>Wasmtime"]
-    B --> C["Policy Module<br/>execguard.wasm"]
-    C --> D["JSON Alerts"]
-    C --> E["Risk Score"]
-    
-    classDef event stroke:#f59e0b,fill:#fffbeb
-    classDef runtime stroke:#2dd4bf,fill:#f0fdfa
-    classDef output stroke:#4ade80,fill:#f0fdf4
-    
-    class A event
-    class B,C runtime
-    class D,E output
+    A[Simulated Events] --> B[WASM Runtime - Wasmtime]
+    B --> C[Policy Module - execguard.wasm]
+    C --> D[JSON Alerts]
+    C --> E[Risk Score]
+
+    style A fill:#fffbeb,stroke:#f59e0b,stroke-width:2px
+    style B fill:#f0fdfa,stroke:#2dd4bf,stroke-width:2px
+    style C fill:#f0fdfa,stroke:#2dd4bf,stroke-width:2px
+    style D fill:#f0fdf4,stroke:#4ade80,stroke-width:2px
+    style E fill:#f0fdf4,stroke:#4ade80,stroke-width:2px
+```
 
 📊 Matriz de Resultados Observados
 Caso de TesteInjeção Aplicada Tempo de RespostaResolução do Agente (H1)
