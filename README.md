@@ -151,7 +151,22 @@ MCPs: 4 servidores FastAPI (métricas, logs, traces, memória)
 LLMs: Groq — LLaMA 3.1 8B Instant (free tier)
 
 
-<img width="1742" height="2552" alt="deepseek_mermaid_20260609_58cc1b (1)" src="https://github.com/user-attachments/assets/633f4038-94fc-4bee-a74f-9481af820f65" />
+Alert
+  │
+  ▼
+BFS Graph Traversal
+  │
+  ├──────────► Metrics MCP ──┐
+  ├──────────► Logs MCP    ──┼──► Temporal Correlation ──► Qdrant Semantic Search
+  └──────────► Traces MCP  ──┘                              │
+                                                            ▼
+                                                      Analysis
+                                                            │
+                                                            ▼
+                                                      Critique
+                                                            │
+                                                            ▼
+                                                      Final Report
 
 
 📊 Matriz de Resultados Observados
