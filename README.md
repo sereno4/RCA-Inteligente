@@ -149,9 +149,7 @@ Infra: Kind + OpenTelemetry Demo App (24 microserviços)
 Observabilidade: Prometheus · Loki · Tempo · Qdrant
 MCPs: 4 servidores FastAPI (métricas, logs, traces, memória)
 LLMs: Groq — LLaMA 3.1 8B Instant (free tier)
-
-```mermaid
-flowchart TB
+graph TB
 
     Alert[Alert]
 
@@ -191,7 +189,6 @@ flowchart TB
     RAG --> A
     A --> B
     B --> C
-```
 
 📊 Matriz de Resultados Observados
 Caso de TesteInjeção Aplicada Tempo de RespostaResolução do Agente (H1)
