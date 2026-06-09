@@ -150,22 +150,49 @@ Observabilidade: Prometheus · Loki · Tempo · Qdrant
 MCPs: 4 servidores FastAPI (métricas, logs, traces, memória)
 LLMs: Groq — LLaMA 3.1 8B Instant (free tier)
 
-
- ## Architecture
-
+## 🏗️ RCA Agent Architecture
 
 ```mermaid
-flowchart LR
-    A[Simulated Events] --> B[WASM Runtime - Wasmtime]
-    B --> C[Policy Module - execguard.wasm]
-    C --> D[JSON Alerts]
-    C --> E[Risk Score]
+flowchart TB
 
-    style A fill:#fffbeb,stroke:#f59e0b,stroke-width:2px
-    style B fill:#f0fdfa,stroke:#2dd4bf,stroke-width:2px
-    style C fill:#f0fdfa,stroke:#2dd4bf,stroke-width:2px
-    style D fill:#f0fdf4,stroke:#4ade80,stroke-width:2px
-    style E fill:#f0fdf4,stroke:#4ade80,stroke-width:2px
+    Alert["Alert"]
+
+    subgraph Discovery["Topology Discovery"]
+        BFS["BFS Graph Traversal"]
+    end
+
+    subgraph Evidence["Evidence Collection"]
+        Metrics["Metrics MCP"]
+        Logs["Logs MCP"]
+        Traces["Traces MCP"]
+    end
+
+    subgraph Analytics["Analytics Layer"]
+        Corr["Temporal Correlation"]
+        RAG["Qdrant Semantic Search"]
+    end
+
+    subgraph Reasoning["LLM Chain"]
+        A["Analysis"]
+        B["Critique"]
+        C["Final Report"]
+    end
+
+    Alert --> BFS
+
+    BFS --> Metrics
+    BFS --> Logs
+    BFS --> Traces
+
+    Metrics --> Corr
+    Logs --> Corr
+    Traces --> Corr
+
+    Corr --> RAG
+
+    RAG --> A
+    A --> B
+    B --> C
 ```
 
 📊 Matriz de Resultados Observados
