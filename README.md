@@ -150,30 +150,30 @@ Observabilidade: Prometheus · Loki · Tempo · Qdrant
 MCPs: 4 servidores FastAPI (métricas, logs, traces, memória)
 LLMs: Groq — LLaMA 3.1 8B Instant (free tier)
 
-%%{init: {'theme': 'default'}}%%
+```mermaid
 flowchart TB
 
-    Alert["Alert"]
+    Alert[Alert]
 
-    subgraph Discovery["Topology Discovery"]
-        BFS["BFS Graph Traversal"]
+    subgraph Discovery
+        BFS[BFS Graph Traversal]
     end
 
-    subgraph Evidence["Evidence Collection"]
-        Metrics["Metrics MCP"]
-        Logs["Logs MCP"]
-        Traces["Traces MCP"]
+    subgraph Evidence
+        Metrics[Metrics MCP]
+        Logs[Logs MCP]
+        Traces[Traces MCP]
     end
 
-    subgraph Analytics["Analytics Layer"]
-        Corr["Temporal Correlation"]
-        RAG["Qdrant Semantic Search"]
+    subgraph Analytics
+        Corr[Temporal Correlation]
+        RAG[Qdrant Semantic Search]
     end
 
-    subgraph Reasoning["LLM Chain"]
-        A["Analysis"]
-        B["Critique"]
-        C["Final Report"]
+    subgraph Reasoning
+        A[Analysis]
+        B[Critique]
+        C[Final Report]
     end
 
     Alert --> BFS
@@ -191,6 +191,7 @@ flowchart TB
     RAG --> A
     A --> B
     B --> C
+```
 
 📊 Matriz de Resultados Observados
 Caso de TesteInjeção Aplicada Tempo de RespostaResolução do Agente (H1)
