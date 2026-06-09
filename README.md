@@ -150,42 +150,50 @@ Observabilidade: Prometheus · Loki · Tempo · Qdrant
 MCPs: 4 servidores FastAPI (métricas, logs, traces, memória)
 LLMs: Groq — LLaMA 3.1 8B Instant (free tier)
 
+## 🏗️ RCA Agent Architecture
+
+```mermaid
 flowchart TB
+
     Alert["Alert"]
-    
+
     subgraph Discovery["Topology Discovery"]
         BFS["BFS Graph Traversal"]
     end
-    
+
     subgraph Evidence["Evidence Collection"]
         Metrics["Metrics MCP"]
         Logs["Logs MCP"]
         Traces["Traces MCP"]
     end
-    
+
     subgraph Analytics["Analytics Layer"]
         Corr["Temporal Correlation"]
         RAG["Qdrant Semantic Search"]
     end
-    
+
     subgraph Reasoning["LLM Chain"]
         A["Analysis"]
         B["Critique"]
         C["Final Report"]
     end
-    
+
     Alert --> BFS
+
     BFS --> Metrics
     BFS --> Logs
     BFS --> Traces
+
     Metrics --> Corr
     Logs --> Corr
     Traces --> Corr
+
     Corr --> RAG
+
     RAG --> A
     A --> B
     B --> C
-
+```
 📊 Matriz de Resultados Observados
 Caso de TesteInjeção Aplicada Tempo de RespostaResolução do Agente (H1)
 Caso 1: Isolamento de RedeCriação de NetworkPolicy bloqueando checkout ──> payment.0.4s⚠️ Identifica falha de conexão com o payment service.
