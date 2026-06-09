@@ -150,25 +150,50 @@ Observabilidade: Prometheus · Loki · Tempo · Qdrant
 MCPs: 4 servidores FastAPI (métricas, logs, traces, memória)
 LLMs: Groq — LLaMA 3.1 8B Instant (free tier)
 Inspiração: Beyond Dashboards — KubeCon/CNCF
-🚀 Quickstart
+## 🏗️ RCA Agent Architecture
 
-[Alerta Disparado] 
-       │
-       ▼
-[Busca em Largura (BFS)] ───> Delimita o Escopo de Impacto no Grafo de Microserviços
-       │
-       ▼
-[MCPs em Paralelo] ─────────> Coleta concorrente de Evidências (Métricas, Logs, Traces)
-       │
-       ▼
-[Correlação Temporal] ──────> Filtra anomalias matemáticas puras (Python Puro)
-       │
-       ▼
-[RAG Semântico] ────────────> Busca falhas similares no Qdrant
-       │
-       ▼
-[LLM Chain (3 Nós Groq)] ───> LLM1 (Análise) ──> LLM2 (Crítica) ──> LLM3 (Relatório)
+```mermaid
+flowchart TB
 
+    Alert["Alert"]
+
+    subgraph Discovery["Topology Discovery"]
+        BFS["BFS Graph Traversal"]
+    end
+
+    subgraph Evidence["Evidence Collection"]
+        Metrics["Metrics MCP"]
+        Logs["Logs MCP"]
+        Traces["Traces MCP"]
+    end
+
+    subgraph Analytics["Analytics Layer"]
+        Corr["Temporal Correlation"]
+        RAG["Qdrant Semantic Search"]
+    end
+
+    subgraph Reasoning["LLM Chain"]
+        A["Analysis"]
+        B["Critique"]
+        C["Final Report"]
+    end
+
+    Alert --> BFS
+
+    BFS --> Metrics
+    BFS --> Logs
+    BFS --> Traces
+
+    Metrics --> Corr
+    Logs --> Corr
+    Traces --> Corr
+
+    Corr --> RAG
+
+    RAG --> A
+    A --> B
+    B --> C
+```
 
 📊 Matriz de Resultados Observados
 Caso de TesteInjeção Aplicada Tempo de RespostaResolução do Agente (H1)
