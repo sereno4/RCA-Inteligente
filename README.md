@@ -151,20 +151,8 @@ MCPs: 4 servidores FastAPI (métricas, logs, traces, memória)
 LLMs: Groq — LLaMA 3.1 8B Instant (free tier)
 
 
-```mermaid
-graph TD
-    Alert-->BFS
-    BFS-->Metrics
-    BFS-->Logs
-    BFS-->Traces
-    Metrics-->Corr
-    Logs-->Corr
-    Traces-->Corr
-    Corr-->RAG
-    RAG-->Analysis
-    Analysis-->Critique
-    Critique-->Final
-```
+<img width="1742" height="2552" alt="deepseek_mermaid_20260609_58cc1b (1)" src="https://github.com/user-attachments/assets/633f4038-94fc-4bee-a74f-9481af820f65" />
+
 
 📊 Matriz de Resultados Observados
 Caso de TesteInjeção Aplicada Tempo de RespostaResolução do Agente (H1)
