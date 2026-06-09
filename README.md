@@ -153,21 +153,17 @@ LLMs: Groq — LLaMA 3.1 8B Instant (free tier)
 
 ```mermaid
 graph TD
-    Alert[Alert] --> BFS[BFS Graph Traversal]
-    
-    BFS --> Metrics[Metrics MCP]
-    BFS --> Logs[Logs MCP]
-    BFS --> Traces[Traces MCP]
-    
-    Metrics --> Corr[Temporal Correlation]
-    Logs --> Corr
-    Traces --> Corr
-    
-    Corr --> RAG[Qdrant Semantic Search]
-    
-    RAG --> A[Analysis]
-    A --> B[Critique]
-    B --> C[Final Report]
+    Alert-->BFS
+    BFS-->Metrics
+    BFS-->Logs
+    BFS-->Traces
+    Metrics-->Corr
+    Logs-->Corr
+    Traces-->Corr
+    Corr-->RAG
+    RAG-->Analysis
+    Analysis-->Critique
+    Critique-->Final
 ```
 
 📊 Matriz de Resultados Observados
