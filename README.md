@@ -151,7 +151,6 @@ MCPs: 4 servidores FastAPI (métricas, logs, traces, memória)
 LLMs: Groq — LLaMA 3.1 8B Instant (free tier)
 
 ## 🏗️ RCA Agent Architecture
-
 flowchart TD
     A[Alerta Disparado] --> B[Busca em Largura - BFS]
     B -->|Delimita Escopo de Impacto| C[MCPs em Paralelo]
